@@ -1,4 +1,4 @@
-# YT Relay API
+# YouTube Music Relay API
 This is a Simple Project Aimed at Simplifying the Process of Making a Custom YouTube Music Client.
 
 The Approach here is to use the ytmusicapi library for Python to create and host a simple API that can be used in Various kinds of Frontends ranging from Native/Progressive Applications to Web Application.

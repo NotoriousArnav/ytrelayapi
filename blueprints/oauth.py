@@ -4,7 +4,7 @@ import time
 
 oauth_credentials = OAuthCredentials()
 api = Blueprint(
-    "api",
+    "oauth",
     __name__
 )
 

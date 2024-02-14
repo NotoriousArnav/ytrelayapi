@@ -9,8 +9,6 @@ The Approach here is to use the ytmusicapi library for Python to create and host
 - Can work well with any stack
 - YT-DLP Integrated with the API to get playback URLs
 
-#TODO: Add GPL License
-
 ## How to Use it?
 ### 1. Setting up Pipenv
 Well, I recently started using pipenv and I love it, so I used pipenv here and you should too!

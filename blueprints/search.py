@@ -10,6 +10,8 @@ api = Blueprint(
     __name__
 )
 
+#TODO: Add Elaborative Documentation
+
 @api.route("/search")
 def search():
     query = request.args.get("query")

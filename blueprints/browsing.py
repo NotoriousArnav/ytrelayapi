@@ -10,10 +10,13 @@ api = Blueprint(
     __name__
 )
 
+#TODO: Add Elaborative Documentation
+
 # Route to get information about an artist
 @api.route("/artist")
 def get_artist():
     channelId = request.args.get("channelId")
+    """Get Artist Information"""
     try:
         artist = anon_client.get_artist(channelId)
     except Exception as e:
@@ -27,6 +30,7 @@ def get_artist_albums():
     params = request.args.get("params")
     limit = int(request.args.get("limit", 100))
     order = request.args.get("order")
+    """Get Albums of the Artist"""
     try:
         albums = anon_client.get_artist_albums(channelId, params, limit=limit, order=order)
     except Exception as e:
@@ -37,6 +41,7 @@ def get_artist_albums():
 @api.route("/album")
 def get_album():
     browseId = request.args.get("browseId")
+    """Fetch an Album"""
     try:
         album = anon_client.get_album(browseId)
     except Exception as e:
@@ -47,6 +52,7 @@ def get_album():
 @api.route("/album_browse_id")
 def get_album_browse_id():
     audioPlaylistId = request.args.get("audioPlaylistId")
+    """Get Browse Id of a Playlist"""
     try:
         browseId = anon_client.get_album_browse_id(audioPlaylistId)
     except Exception as e:

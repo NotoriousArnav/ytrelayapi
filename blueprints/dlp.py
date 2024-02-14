@@ -9,6 +9,12 @@ api = Blueprint(
 
 @api.get('/audio')
 def fetch_audio():
+    """
+Fetch Playback URL of any YouTube Video.
+Params:
+- videoId : str : required : Video ID of the Video
+- redirect: optional : redirect to the playback url, instead of returing in a JSON Response
+    """
     #TODO: Add Variable BitRate
     videoId = request.args.get('videoId')
     redirect = request.args.get('redirect')

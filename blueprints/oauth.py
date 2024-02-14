@@ -10,6 +10,9 @@ api = Blueprint(
 
 @api.route("/connect")
 def connect_ytmusic():
+    """Step 1 for fetching the Access and Refresh tokens for your YouTube Music Account.
+Step 1 is to Obtain authorization Code
+    """
     # Step 1: Obtain authorization code
     auth_code_data = oauth_credentials.get_code()
     verification_url = auth_code_data.get("verification_url")
@@ -34,6 +37,11 @@ def connect_ytmusic():
 
 @api.route("/callback")
 def callback():
+    """Step 2 for fetching the Access and Refresh tokens for your YouTube Music Account.
+Step 2 is to fetch Access token
+Params: 
+- device_code: str: required: The Device Code provided in the First Step. (Usually the whole Constructed URL is provided)  
+    """
     # Step 2: Exchange authorization code for access token
     device_code = request.args.get("device_code")
     token_data = oauth_credentials.token_from_code(device_code)

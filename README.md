@@ -7,6 +7,7 @@ The Approach here is to use the ytmusicapi library for Python to create and host
 - Increased Privacy because of Anonymity
 - Better Developer Experience
 - Can work well with any stack
+- YT-DLP Integrated with the API to get playback URLs
 
 #TODO: Add GPL License
 

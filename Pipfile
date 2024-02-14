@@ -9,6 +9,7 @@ ytmusicapi = "*"
 yt-dlp = "*"
 flask = "*"
 gunicorn = "*"
+pytube = "*"
 
 [dev-packages]
 

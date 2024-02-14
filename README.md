@@ -3,6 +3,8 @@ This is a Simple Project Aimed at Simplifying the Process of Making a Custom You
 
 The Approach here is to use the ytmusicapi library for Python to create and host a simple API that can be used in Various kinds of Frontends ranging from Native/Progressive Applications to Web Application.
 
+#TODO: Add GPL License
+
 ## How to Use it?
 ### 1. Setting up Pipenv
 Well, I recently started using pipenv and I love it, so I used pipenv here and you should too!

@@ -3,6 +3,11 @@ This is a Simple Project Aimed at Simplifying the Process of Making a Custom You
 
 The Approach here is to use the ytmusicapi library for Python to create and host a simple API that can be used in Various kinds of Frontends ranging from Native/Progressive Applications to Web Application.
 
+## Why this and and not the Official API or Invidious or etc?
+- Increased Privacy because of Anonymity
+- Better Developer Experience
+- Can work well with any stack
+
 #TODO: Add GPL License
 
 ## How to Use it?

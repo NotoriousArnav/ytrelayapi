@@ -19,12 +19,12 @@ Params:
     videoId = request.args.get('videoId')
     redirect = request.args.get('redirect')
     try:
-        video = YouTube(f'https://youtube.com/watch?v={videoId}')
-        stream = video.streams.filter(only_audio=True, abr="160kbps")[0] #Talking about this
+        video = YouTube(f'https://music.youtube.com/watch?v={videoId}')
+        stream = video.streams.filter(only_audio=True, abr="160kbps").first().url #Talking about this
         # Currently its stuck at 160kbps but I want to add Variable BitRate Support
-        data = {'url':stream.url}
+        data = {'url':stream}
         if redirect:
-            return rd(stream.url)
+            return rd(stream)
     except Exception as e:
         data = e.args
 

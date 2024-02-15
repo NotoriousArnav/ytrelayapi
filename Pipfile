@@ -12,6 +12,7 @@ pytube = "*"
 bs4 = "*"
 pylrc = "*"
 lxml = "*"
+flask-cors = "*"
 
 [dev-packages]
 

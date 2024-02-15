@@ -1,4 +1,5 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 
 def list_routes(app):
     output = {}
@@ -19,7 +20,7 @@ def list_routes(app):
 def create_app(*args,**kwargs):
     from blueprints import blueprints
     app = Flask(__name__)
-
+    CORS(app)
     for x in blueprints:
         app.register_blueprint(x)
 
@@ -27,6 +28,7 @@ def create_app(*args,**kwargs):
     def after_request(response):
         header = response.headers
         header['Access-Control-Allow-Origin'] = '*'
+        header['Accept-Ranges'] = 'bytes'
         # Other headers can be added here if needed
         return response
 

@@ -23,6 +23,13 @@ def create_app(*args,**kwargs):
     for x in blueprints:
         app.register_blueprint(x)
 
+    @app.after_request 
+    def after_request(response):
+        header = response.headers
+        header['Access-Control-Allow-Origin'] = '*'
+        # Other headers can be added here if needed
+        return response
+
     @app.route('/')
     def index():
         """Index Route to List all available routes with their documentation"""

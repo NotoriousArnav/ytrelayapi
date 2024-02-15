@@ -22,7 +22,7 @@ Yields:
     for data_chunk in resp.iter_content(chunk_size=chunk):
         yield data_chunk
 
-def serve_partial(url, range_header, mime, size=3145728):
+def serve_partial(url, range_header, mime, size=5242880):
     """
 Serve partial content from a URL.
 

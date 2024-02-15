@@ -95,3 +95,43 @@ Params:
     return jsonify(
             lrc
         )
+
+@api.get('/quick')
+def quick_lyrics():
+    """Searches and Returns the Top Match
+Params:
+query : str : required : Query String 
+    """
+    query = request.args.get('query')
+    if not query:
+        return jsonify({
+            'error': 'No Query Param Passed'
+        })
+    url = f"https://www.megalobiz.com/search/all?qry={query.replace(' ', '+')}"
+    soup = BeautifulSoup(requests.get(url).content)
+    div = soup.find('div', {'id':'list_entity_container'})
+    if not div:
+        return jsonify({
+            'error': 'not found'
+        })
+    entities = div.find_all('div', class_="entity_full_member_box")
+    results = list(map(
+        parse_search_entities,
+        entities
+    ))
+    results.sort(key=lambda x: x['downloads'], reverse=True)
+    song = results[0]
+    url = f"https://www.megalobiz.com/{song['id']}"
+    soup = BeautifulSoup(requests.get(url).content)
+    dt = soup.find('div', class_="lyrics_details entity_more_info").find('span')
+    if not dt:
+        return jsonify({
+            'error': 'can not parse lyrics'
+        })
+    lyrics = pylrc.parse(dt.text)
+    lrc = {}
+    for lyric in lyrics:
+        lrc.update({
+            lyric.time:lyric.text
+        })
+    return jsonify(lrc)

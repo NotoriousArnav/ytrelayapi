@@ -46,9 +46,17 @@ Params:
 - query : str : required : Query String 
     """
     query = request.args.get('query')
+    if not query:
+        return jsonify({
+            'error': 'No query given'
+        })
     url = f"https://www.megalobiz.com/search/all?qry={query.replace(' ', '+')}"
     soup = BeautifulSoup(requests.get(url).content)
     div = soup.find('div', {'id':'list_entity_container'})
+    if not div:
+        return jsonify({
+            'error': 'not found'
+        })
     entities = div.find_all('div', class_="entity_full_member_box")
     results = list(map(
         parse_search_entities,
@@ -67,12 +75,23 @@ Params:
 - id : str: required : Id/URL of the lyrics
     """
     id = request.args.get('id')
+    if not id:
+        return jsonify({
+            'error': 'id param not provided'
+        })
     url = f"https://www.megalobiz.com/{id}"
     soup = BeautifulSoup(requests.get(url).content)
     dt = soup.find('div', class_="lyrics_details entity_more_info").find('span')
+    if not dt:
+        return jsonify({
+            'error': 'can not parse lyrics'
+        })
     lyrics = pylrc.parse(dt.text)
     lrc = {}
-    for lyric in lyrics: lrc.update({lyric.time:lyric.text})
+    for lyric in lyrics:
+        lrc.update({
+            lyric.time:lyric.text
+        })
     return jsonify(
             lrc
         )

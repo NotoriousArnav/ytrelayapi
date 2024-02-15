@@ -25,9 +25,7 @@ def create_app(*args,**kwargs):
 
     @app.route('/')
     def index():
-        """
-Index Route to List all available routes with their documentation
-        """
+        """Index Route to List all available routes with their documentation"""
         return jsonify(
             list_routes(app)
         )

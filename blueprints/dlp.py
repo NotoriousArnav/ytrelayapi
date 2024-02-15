@@ -37,7 +37,7 @@ Returns:
     """
     from_bytes, until_bytes = range_header.replace('bytes=', '').split('-')
     if not until_bytes:
-        until_bytes = int(from_bytes) + size  # Default size is 3MB
+        until_bytes = int(from_bytes) + size  # Default size is 5MB
         
     headers = {'Range': 'bytes=%s-%s' % (from_bytes, until_bytes)}
     r = requests.get(url, headers=headers, stream=True)

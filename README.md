@@ -13,6 +13,7 @@ Currently the repo as it is is hosted on render, [https://ytmrelay-api.onrender.
 - Better Developer Experience
 - Can work well with any stack
 - YT-DLP Integrated with the API to get playback URLs
+- Time Synced Lyrics api
 
 ## How to Use it?
 ### 1. Setting up Pipenv

@@ -1,7 +1,10 @@
 # YouTube Music Relay API
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FNotoriousArnav%2Fytrelayapi&count_bg=%2379C83D&title_bg=%23555555&icon=python.svg&icon_color=%23E7E7E7&title=Repo+Views&edge_flat=false)](https://hits.seeyoufarm.com)
 This is a Simple Project Aimed at Simplifying the Process of Making a Custom YouTube Music Client.
 
 The Approach here is to use the ytmusicapi library for Python to create and host a simple API that can be used in Various kinds of Frontends ranging from Native/Progressive Applications to Web Application.
+
+Currently the repo as it is is hosted on render, [https://ytmrelay-api.onrender.com](https://ytmrelay-api.onrender.com).
 
 #TODO: Add Documentation in the Functions
 

@@ -10,6 +10,9 @@ yt-dlp = "*"
 flask = "*"
 gunicorn = "*"
 pytube = "*"
+bs4 = "*"
+pylrc = "*"
+lxml = "*"
 
 [dev-packages]
 

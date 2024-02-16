@@ -7,6 +7,7 @@ The Approach here is to use the ytmusicapi library for Python to create and host
 Currently the repo as it is is hosted on render, [https://ytmrelay-api.onrender.com](https://ytmrelay-api.onrender.com).
 
 #TODO: Add Documentation in the Functions
+#TODO: Fix Audio Streaming
 
 ## Why this and and not the Official API or Invidious or etc?
 - Increased Privacy because of Anonymity
@@ -66,3 +67,6 @@ Follow these steps:
 5. Make a PR, to push your Feature to us, we will review it and Merge it if required.
 
 The reason why creating a Seperate brnach is important is because, unlike issues is because we need time to check that will the feature break anything else in the code.
+
+## Help Needed
+The dlp blueprint is Doomed...and we need to fix it....please help us return a url to user that they can use to stream some music :') !

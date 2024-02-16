@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request, Response
 from flask import redirect as rd
+from ytmusicapi import YTMusic
 from pytube import YouTube
 import requests
 
@@ -22,7 +23,7 @@ Yields:
     for data_chunk in resp.iter_content(chunk_size=chunk):
         yield data_chunk
 
-def serve_partial(url, range_header, mime, size=5242880):
+def serve_partial(url, range_header, mime, size=10485760):
     """
 Serve partial content from a URL.
 
@@ -48,6 +49,8 @@ Returns:
     rv.headers.add('Content-Length', r.headers['Content-Length'])
     return rv
 
+#TODO: Fix this Audio Streaming Messs :')
+
 @api.route('/audio')
 def fetch_audio():
     """
@@ -65,7 +68,7 @@ Returns:
 
         url = stream.url
         range_header = request.headers.get('Range', 'bytes=0-')
-        return serve_partial(url, range_header, 'audio/webm')
+        return serve_partial(url, range_header, 'audio/webm', size=stream.filesize_approx)
 
     except Exception as e:
         return {'error': str(e)}, 500

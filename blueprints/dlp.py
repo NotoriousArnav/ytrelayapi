@@ -22,7 +22,7 @@ Yields:
 - bytes: Data chunk from the response.
     """
     for data_chunk in resp.iter_content(chunk_size=chunk):
-        time.sleep(1)
+        time.sleep(0.1) # Lets Play with this Value
         yield data_chunk
 
 def serve_partial(url, range_header, mime, size=10485760):

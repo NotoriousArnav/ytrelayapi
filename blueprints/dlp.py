@@ -22,7 +22,7 @@ Yields:
 - bytes: Data chunk from the response.
     """
     for data_chunk in resp.iter_content(chunk_size=chunk):
-        time.sleep(0.1) # Lets Play with this Value
+        # time.sleep(0.1) # Lets Play with this Value
         yield data_chunk
 
 def serve_partial(url, range_header, mime, size=10485760):
@@ -63,12 +63,13 @@ Returns:
     """
     video_id = request.args.get('videoId')
     try:
-        video = YouTube(f'https://music.youtube.com/watch?v={video_id}')
+        video = YouTube(f'https://www.youtube.com/watch?v={video_id}')
         stream = video.streams.filter(only_audio=True, abr="160kbps").first()
         if not stream:
             raise Exception('Audio stream not found')
 
         url = stream.url
+        print(url)
         range_header = request.headers.get('Range', 'bytes=0-')
         return serve_partial(url, range_header, 'audio/webm', size=stream.filesize_approx)
 

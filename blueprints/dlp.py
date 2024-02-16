@@ -62,6 +62,7 @@ Returns:
 - flask.Response: The response object with the streamed audio data.
     """
     video_id = request.args.get('videoId')
+    redirect = request.args.get('redirect')
     try:
         video = YouTube(f'https://www.youtube.com/watch?v={video_id}')
         stream = video.streams.filter(only_audio=True, abr="160kbps").first()
@@ -69,6 +70,8 @@ Returns:
             raise Exception('Audio stream not found')
 
         url = stream.url
+        if redirect:
+            return rd(url)
         print(url)
         range_header = request.headers.get('Range', 'bytes=0-')
         return serve_partial(url, range_header, 'audio/webm', size=stream.filesize_approx)

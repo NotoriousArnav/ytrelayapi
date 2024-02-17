@@ -1,4 +1,4 @@
-from flask import Blueprint, request, Response
+from flask import Blueprint, request, Response, jsonify
 from flask import redirect as rd
 from pytube import YouTube
 import requests
@@ -73,6 +73,7 @@ Returns:
     """
     video_id = request.args.get('videoId')
     redirect = request.args.get('redirect')
+    return_stream = request.args.get('return_stream')
     try:
         video = YouTube(f'https://www.youtube.com/watch?v={video_id}')
         stream = video.streams.filter(only_audio=True, abr="160kbps").first()
@@ -82,6 +83,12 @@ Returns:
         url = stream.url
         if redirect:
             return rd(url)
+        elif return_stream:
+            return jsonify(
+                {
+                    'url': url
+                }
+            )
         print(url)
         range_header = request.headers.get('Range', 'bytes=0-')
         return serve_partial(url, range_header, 'audio/webm', size=stream.filesize_approx)

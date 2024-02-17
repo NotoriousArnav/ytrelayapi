@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 import pylrc
 
-"""Lyrics Blueprint
+__doc__ = """Lyrics Blueprint
 This Blueprint Fetches Lyrics from https://megalobiz.com because by far its the most accurate one that I have come across.
 """
 
@@ -14,6 +14,8 @@ api = Blueprint(
 )
 
 def parse_search_entities(soup):
+    """Parsing HTML Content
+    """
     # Extract the number of downloads and views
     downloads_span = soup.find('span')
     downloads = downloads_span.get_text(strip=True).split('-')[1].replace('downloads', '').replace(',', '')
@@ -74,12 +76,12 @@ Fetch Lyrics from Megalobiz
 Params:
 - id : str: required : Id/URL of the lyrics
     """
-    id = request.args.get('id')
+    Id = request.args.get('id')
     if not id:
         return jsonify({
             'error': 'id param not provided'
         })
-    url = f"https://www.megalobiz.com/{id}"
+    url = f"https://www.megalobiz.com/{Id}"
     soup = BeautifulSoup(requests.get(url).content)
     dt = soup.find('div', class_="lyrics_details entity_more_info").find('span')
     if not dt:

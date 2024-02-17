@@ -1,3 +1,4 @@
+from blueprints import blueprints
 from flask import Flask, jsonify
 from flask_cors import CORS
 
@@ -16,9 +17,8 @@ def list_routes(app):
         output.update(out)
     return output
     
-
-def create_app(*args,**kwargs):
-    from blueprints import blueprints
+def create_app():
+    """Flask Create App method"""
     app = Flask(__name__)
     CORS(app)
     for x in blueprints:

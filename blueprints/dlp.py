@@ -1,9 +1,7 @@
-from flask import Blueprint, jsonify, request, Response
+from flask import Blueprint, request, Response
 from flask import redirect as rd
-from ytmusicapi import YTMusic
 from pytube import YouTube
 import requests
-import time
 
 api = Blueprint(
     'dlp',

@@ -1,7 +1,6 @@
 from flask import Blueprint, request, jsonify
 from ytmusicapi.auth.oauth import OAuthCredentials
 from ytmusicapi import YTMusic
-import time
 
 oauth_credentials = OAuthCredentials()
 anon_client = YTMusic()

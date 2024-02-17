@@ -1,6 +1,6 @@
+import time
 from flask import Blueprint, request, jsonify
 from ytmusicapi.auth.oauth import OAuthCredentials
-import time
 
 oauth_credentials = OAuthCredentials()
 api = Blueprint(

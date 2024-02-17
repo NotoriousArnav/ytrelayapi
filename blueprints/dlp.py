@@ -52,6 +52,18 @@ Returns:
     return rv
 
 #TODO: Fix this Audio Streaming Messs :')
+"""
+This is Entirely fucked!!!!!!!!!!!
+If we use videoId of a song that is Used by YT Music, the streaming link is IP Boud, and If we use regular videoId YT does not seem to care!
+The Only Idea that has come to my mind since then is, separate the streams. If its a regular video ust fcking redirect to the streaming url else Stream it.
+So, for now sadl the Client needs to use a Client Side software for this.
+Some examples are:
+yt-dlp: Python
+ytdlp-nodejs: JS Backend
+and maybe others.....
+I guess VLC too has a good support for laying youtube videos by their youtube id, so maybe we can take a look at libvlc, but MPV solel relies on yt-dlp so Can't use MPV
+"""
+
 
 @api.route('/audio')
 def fetch_audio():

@@ -9,6 +9,9 @@ Currently the repo as it is is hosted on render, [https://ytmrelay-api.onrender.
 #TODO: Add Documentation in the Functions
 #TODO: Fix Audio Streaming
 
+## Projects related to this:
+- Venna (Repo will be linked soon)
+
 ## Why this and and not the Official API or Invidious or etc?
 - Increased Privacy because of Anonymity
 - Better Developer Experience

@@ -55,7 +55,5 @@ Default: False, returns the list of search suggestions in plain text.
     """
     query = request.args.get("query")
     detailed_runs = request.args.get("detailed_runs", False)
-
     suggestions = anon_client.get_search_suggestions(query=query, detailed_runs=detailed_runs)
-
     return jsonify(suggestions)

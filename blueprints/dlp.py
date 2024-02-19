@@ -89,7 +89,6 @@ Returns:
                     'url': url
                 }
             )
-        print(url)
         range_header = request.headers.get('Range', 'bytes=0-')
         return serve_partial(url, range_header, 'audio/webm', size=stream.filesize_approx)
 

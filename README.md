@@ -8,6 +8,8 @@ Currently the repo as it is is hosted on render, [https://ytmrelay-api.onrender.
 
 #TODO: Add Documentation in the Functions
 #TODO: Fix Audio Streaming
+#TODO: Server Logs
+#TODO: Spotify Music Analysis API Integration
 
 ## Projects related to this:
 - Venna (Repo will be linked soon)
@@ -18,6 +20,7 @@ Currently the repo as it is is hosted on render, [https://ytmrelay-api.onrender.
 - Can work well with any stack
 - YT-DLP Integrated with the API to get playback URLs
 - Time Synced Lyrics api
+- Designed for Music Players in Mind
 
 ## How to Use it?
 ### 1. Setting up Pipenv

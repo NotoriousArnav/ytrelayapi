@@ -11,18 +11,24 @@ api = Blueprint(
 
 def generate_data_from_response(resp, chunk=2048):
     """
-Generate data chunks from a response object.
+    Generate data chunks from a response object and cache them using BytesIO.
 
-Args:
-- resp (requests.Response): The response object to generate data from.
-- chunk (int): The chunk size in bytes (default is 2048).
+    Args:
+    - resp (requests.Response): The response object to generate data from.
+    - chunk (int): The chunk size in bytes (default is 2048).
 
-Yields:
-- bytes: Data chunk from the response.
+    Yields:
+    - bytes: Data chunk from the response.
     """
+    cached_data = BytesIO()
     for data_chunk in resp.iter_content(chunk_size=chunk):
-        # time.sleep(0.1) # Lets Play with this Value
-        yield data_chunk
+        cached_data.write(data_chunk)
+    cached_data.seek(0)
+    
+    total_size = cached_data.getbuffer().nbytes
+    for start in range(0, total_size, chunk):
+        cached_data.seek(start)
+        yield cached_data.read(chunk)
 
 def serve_partial(url, range_header, mime, size=10485760):
     """
@@ -44,13 +50,7 @@ Returns:
     headers = {'Range': 'bytes=%s-%s' % (from_bytes, until_bytes)}
     r = requests.get(url, headers=headers, stream=True)
 
-    dt = BytesIO()
-    for chunk in generate_data_from_response(r):
-        dt.write(chunk)
-
-    dt.seek(0)
-
-    rv = Response(dt, 206, mimetype=mime,
+    rv = Response(r, 206, mimetype=mime,
                   direct_passthrough=True)
     rv.headers.add('Content-Range', r.headers.get('Content-Range'))
     rv.headers.add('Content-Length', r.headers['Content-Length'])
@@ -66,7 +66,7 @@ Some examples are:
 yt-dlp: Python
 ytdlp-nodejs: JS Backend
 and maybe others.....
-I guess VLC too has a good support for laying youtube videos by their youtube id, so maybe we can take a look at libvlc, but MPV solel relies on yt-dlp so Can't use MPV
+I guess VLC too has a good support for playing youtube videos by their youtube id, so maybe we can take a look at libvlc, but MPV solel relies on yt-dlp so Can't use MPV
 """
 
 

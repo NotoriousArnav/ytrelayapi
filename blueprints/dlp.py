@@ -2,8 +2,6 @@ from flask import Blueprint, request, Response, jsonify
 from flask import redirect as rd
 from pytube import YouTube
 import requests
-import random
-import os
 
 api = Blueprint(
     'dlp',
@@ -38,21 +36,6 @@ Args:
 Returns:
 - flask.Response: The response object with the streamed content.
     """
-    with open(os.path.join(os.getcwd(), 'proxies.txt'), 'r') as f:
-        proxies = list(
-                    [x.strip().split('\t') for x in f.readlines()]
-                )[1:]
-
-    host, port = random.choice(proxies)
-    proxy = f'http://{host}:{port}'
-    sproxy = f'https://{host}:{port}'
-    print('Proxy:', host, port)
-    print('Cur ip: ',requests.get('https://httpbin.org/ip').json())
-    try:
-        print('Proxy: ',requests.get('https://httpbin.org/ip', proxies={'https':sproxy}).json())
-    except requests.exceptions.ProxyError:
-        print('Proxy: ',requests.get('https://httpbin.org/ip', proxies={'http':proxy}).json())
-
     from_bytes, until_bytes = range_header.replace('bytes=', '').split('-')
     if not until_bytes:
         until_bytes = int(from_bytes) + size  # Default size is 5MB
@@ -97,7 +80,7 @@ Returns:
         if not stream:
             raise Exception('Audio stream not found')
 
-        url = stream.url
+        url = stream.url+'&ratebypass=yes'
         if redirect:
             return rd(url)
         elif return_stream:

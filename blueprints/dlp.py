@@ -1,6 +1,7 @@
 from flask import Blueprint, request, Response, jsonify
 from flask import redirect as rd
 from pytube import YouTube
+from io import BytesIO
 import requests
 
 api = Blueprint(
@@ -43,7 +44,13 @@ Returns:
     headers = {'Range': 'bytes=%s-%s' % (from_bytes, until_bytes)}
     r = requests.get(url, headers=headers, stream=True)
 
-    rv = Response(generate_data_from_response(r), 206, mimetype=mime,
+    dt = BytesIO()
+    for chunk in generate_data_from_response(r):
+        dt.write(chunk)
+
+    dt.seek(0)
+
+    rv = Response(dt, 206, mimetype=mime,
                   direct_passthrough=True)
     rv.headers.add('Content-Range', r.headers.get('Content-Range'))
     rv.headers.add('Content-Length', r.headers['Content-Length'])
